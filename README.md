@@ -5,7 +5,6 @@
 
 A real-time voice assistant that runs entirely on open-weight models that I host myself. Talk to it in **English or
 Hindi**, hear a spoken answer, interrupt it whenever you like, and watch the latency of every stage live in the UI.
-Built for the Trikon Software Labs AI internship assignment.
 
 **Demo video:** [add link here]
 
