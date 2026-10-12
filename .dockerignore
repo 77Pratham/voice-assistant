@@ -1,0 +1,11 @@
+.venv
+venv
+.env
+.git
+.pytest_cache
+__pycache__
+models
+logs
+tests
+docs
+colab

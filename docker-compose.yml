@@ -1,0 +1,22 @@
+# docker compose up -d
+# docker compose exec ollama ollama pull gemma3:4b
+# docker compose run --rm app python scripts/download_models.py
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes: [ollama:/root/.ollama]
+    # GPU (NVIDIA container toolkit):
+    # deploy: {resources: {reservations: {devices: [{driver: nvidia, count: all, capabilities: [gpu]}]}}}
+  app:
+    build: .
+    depends_on: [ollama]
+    environment:
+      OLLAMA_URL: http://ollama:11434
+    volumes:
+      - ./models:/srv/models
+      - ./logs:/srv/logs
+      - hf-cache:/root/.cache/huggingface
+    ports: ["8000:8000"]
+volumes:
+  ollama:
+  hf-cache:

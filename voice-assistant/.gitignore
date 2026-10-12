@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.pytest_cache/
+models/piper/*.onnx
+models/piper/*.onnx.json
+logs/*.jsonl
+.DS_Store
+logs/utterances/
+*.wav

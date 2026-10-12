@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voice assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Voice assistant</h1>
+    <p class="models" id="models" aria-label="Models in use">Connecting…</p>
+    <p class="conn" id="conn" data-state="down"><span class="dot"></span><span id="connText">Offline</span></p>
+  </header>
+
+  <main>
+    <section class="talk" aria-label="Conversation">
+      <ol class="log" id="log" aria-live="polite">
+        <li class="empty" id="empty">Press the microphone and start talking. You can speak English or Hindi, and interrupt the reply at any time.</li>
+      </ol>
+
+      <div class="dock">
+        <button class="mic" id="mic" type="button" aria-pressed="false" aria-label="Start conversation">
+          <span class="ring" aria-hidden="true"></span>
+          <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 15a3.5 3.5 0 0 0 3.5-3.5v-6a3.5 3.5 0 0 0-7 0v6A3.5 3.5 0 0 0 12 15Zm6-3.5a1 1 0 1 0-2 0 4 4 0 0 1-8 0 1 1 0 1 0-2 0 6 6 0 0 0 5 5.91V20H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-2.59A6 6 0 0 0 18 11.5Z"/></svg>
+        </button>
+        <div class="state">
+          <strong id="stateLabel">Microphone is off</strong>
+          <span id="stateHint">Headphones give the best interruption handling.</span>
+          <div class="meter" aria-hidden="true" title="Microphone level"><i id="meterFill"></i></div>
+        </div>
+        <form id="typed" autocomplete="off">
+          <label class="sr" for="typedInput">Type a message</label>
+          <input id="typedInput" type="text" placeholder="Or type a message">
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <aside class="trace" aria-label="Latency and settings">
+      <h2>Last reply</h2>
+      <div class="total" id="total" aria-live="polite">
+        <span class="num" id="totalNum">–</span>
+        <span class="unit">ms from end of your speech to the first sound</span>
+      </div>
+      <div class="wf" id="wf" role="img" aria-label="Latency breakdown"></div>
+      <ul class="legend" id="legend"></ul>
+      <p class="median" id="median"></p>
+
+      <h2>Settings</h2>
+      <div class="field">
+        <label for="lang">Language</label>
+        <select id="lang">
+          <option value="auto">Detect automatically</option>
+          <option value="en">English</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="hang">Wait after you stop talking: <output id="hangOut">650 ms</output></label>
+        <input id="hang" type="range" min="300" max="1200" step="50" value="650">
+      </div>
+      <div class="field">
+        <label for="sens">Microphone sensitivity: <output id="sensOut">3</output></label>
+        <input id="sens" type="range" min="1" max="5" step="1" value="3">
+      </div>
+      <div class="field check">
+        <input id="barge" type="checkbox" checked>
+        <label for="barge">Let me interrupt the assistant by speaking</label>
+      </div>
+      <button class="ghost" id="reset" type="button">Start a new conversation</button>
+    </aside>
+  </main>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
